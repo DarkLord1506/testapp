@@ -83,6 +83,7 @@ public class UserService {
     }
 
     public List<UserData> getAllusers() {
+        log.info("Getting all data");
         return userDataRepository.findAll();
     }
 }
