@@ -26,10 +26,12 @@ public class UserService {
         UserData savedData=null;
         Random ran = new Random();
         int age = ran.nextInt(10) + 20;
+
+        int index = ran.nextInt(5);
         UserData userData = new UserData();
         userData.setId(id);
         userData.setAge(age);
-        userData.setCity(String.valueOf(Arrays.stream(cityNames).findAny().get()));
+        userData.setCity(cityNames[index]);
         userData.setPhoneNumber(900000000L+Math.abs(ran.nextLong()));
 
         try {
@@ -78,5 +80,9 @@ public class UserService {
         }
         log.info("User::{} deleted",id);
         userDataRepository.deleteById(id);
+    }
+
+    public List<UserData> getAllusers() {
+        return userDataRepository.findAll();
     }
 }
