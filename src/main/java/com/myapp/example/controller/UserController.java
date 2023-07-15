@@ -4,6 +4,7 @@ import com.myapp.example.model.UserData;
 import com.myapp.example.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -44,6 +45,7 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<UserData>> getAllUsers(){
+        log.info("Getting all users");
         return new ResponseEntity<>(userService.getAllusers(),HttpStatus.OK);
     }
 }
