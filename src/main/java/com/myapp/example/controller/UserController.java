@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 @Slf4j
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/add/{userId}")
     public ResponseEntity<UserData> addNewUser(@Valid @NotNull(message = "User Id Cannot Be Null")  @PathVariable("userId") Long userId){
         UserData response =  userService.addUserData(userId);
